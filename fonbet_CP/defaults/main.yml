@@ -1,0 +1,9 @@
+---
+# defaults file for fonbet_CP
+# CP user and password
+cp_user: "admin"
+cp_password: "vpn123"
+# jira user and password
+jira_user: "io@tssolution.ru"
+jira_password: "eizxfSrFUpp0E2tJEDMN3727"
+

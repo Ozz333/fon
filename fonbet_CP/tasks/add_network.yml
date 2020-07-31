@@ -1,0 +1,46 @@
+# Add network to CP
+- name: Block for Checking the type
+  block:
+
+  - name: login
+    uri:
+      url: "https://192.168.1.100/web_api/v1.6/login"
+      validate_certs: false
+      method: POST
+      body_format: json
+      body:
+        user: "{{ cp_user }}"
+        password: "{{ cp_password }}"
+    register: loginoutput
+
+  - set_fact:
+      sid: "{{ loginoutput.json.sid }}"
+
+  - name: show hosts
+    uri:
+      url: "https://192.168.1.100/web_api/v1.6/add-network"
+      validate_certs: false
+      method: POST
+      body_format: json
+      headers:
+        X-chkp-sid: "{{ sid }}"
+      body:
+        name: "{{ item.value.name }}" 
+        subnet: "{{ item.value.ip_address }}"
+        subnet-mask: "{{ item.value.net_mask }}"
+        color: khaki
+        comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
+    register: loginoutput
+
+  - name: publish
+    uri:
+      url: "https://192.168.1.100/web_api/v1.6/publish"
+      validate_certs: false
+      method: POST
+      body_format: json
+      headers:
+        X-chkp-sid: "{{ sid }}"
+      body:
+        {}
+
+  when: item.value.type  == "network"

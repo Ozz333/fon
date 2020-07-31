@@ -1,0 +1,44 @@
+# Add tcp servic to CP
+- name: login
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/login"
+    validate_certs: false
+    method: POST
+    body_format: json
+    body:
+      user: "admin"
+      password: "vpn123"
+  register: loginoutput
+
+- set_fact:
+    sid: "{{ loginoutput.json.sid }}"
+
+- name: add_service
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/add-service-other"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      name: "tcp_service_2"
+      port: 5670
+      keep-connections-open-after-policy-installation: false
+      session-timeout: 0
+      match-for-any: true
+      color: khaki
+      comments: "From Ansible"
+  register: loginoutput
+
+- name: publish
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/publish"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      {}
+

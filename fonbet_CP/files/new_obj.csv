@@ -1,0 +1,5 @@
+type;name;ip_address;net_mask;service
+host;host_3;192.168.11.11;;
+network;net_3;192.168.44.0;255.255.255.0;
+service_tcp;service_for_me;;;33434
+host;host_4;192.168.11.131;;
