@@ -1,0 +1,51 @@
+# Add access rule to CP
+- name: login
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/login"
+    validate_certs: false
+    method: POST
+    body_format: json
+    body:
+      user: "{{ cp_user }}"
+      password: "{{ cp_password }}"
+  register: loginoutput
+
+- set_fact:
+    sid: "{{ loginoutput.json.sid }}"
+
+- name: add_access_rule
+    uri:
+      url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
+      validate_certs: false
+      method: POST
+      body_format: json
+      headers:
+        X-chkp-sid: "{{ sid }}"
+      body:
+        name: my_rule_4
+        layer: Network
+        position:
+          bottom: "From Ansible"
+        track:
+          type: Log
+        time: my_time
+        source:
+          - Any
+        destination:
+          - Any
+        service:
+          - https
+          - http
+        action: Accept
+        comments: "From Ansible"
+
+- name: publish
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/publish"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      {}

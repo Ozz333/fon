@@ -1,0 +1,38 @@
+- name: get issue
+  uri:
+    url: "https://infosec-ib.atlassian.net/rest/api/2/issue/{{ jira_board }}-{{ jira_case }}"
+    method: GET
+    force_basic_auth: yes
+    body_format: json
+    user: "{{ jira_user }}"
+    password: "{{ jira_password }}"
+  register: loginoutput
+
+- name: Setting fact for json
+  set_fact:
+    issue: "{{ loginoutput.json.fields.attachment[0].content }}"
+
+- name: Download file
+  get_url:
+    url: "{{ issue }}"
+    dest: "{{ role_path }}/files/new_obj.csv"
+    force_basic_auth: yes
+    username: "{{ jira_user }}"
+    password: "{{ jira_password }}"
+
+- name: loading CSV and parsing it with nessecary parameters
+  read_csv: 
+    path: "{{ role_path }}/files/new_obj.csv"
+    delimiter: ';'
+    key: name
+  register: checkpoint_parsed_csv
+
+- name: echoing var
+  debug:
+    var: checkpoint_parsed_csv
+
+- name: Showing the params for the type network
+  debug: 
+    msg: "Current key: {{ item.key }} and showing the value {{ item.value.ip_address }} and showing type {{item.value.type}} "
+  with_dict: "{{ checkpoint_parsed_csv.dict }}"
+  register: checkpoint_network_type_var
