@@ -21,7 +21,7 @@
     password: "{{ jira_password }}"
 
 - name: loading CSV and parsing it with nessecary parameters
-  read_csv: 
+  read_csv:
     path: "{{ role_path }}/files/new_obj.csv"
     delimiter: ';'
     key: name
@@ -31,8 +31,8 @@
   debug:
     var: checkpoint_parsed_csv
 
-- name: Showing the params for the type network
-  debug: 
-    msg: "Current key: {{ item.key }} and showing the value {{ item.value.ip_address }} and showing type {{item.value.type}} "
-  with_dict: "{{ checkpoint_parsed_csv.dict }}"
-  register: checkpoint_network_type_var
+#- name: Showing the params for the type network
+#  debug:
+#    msg: "Current key: {{ item.key }} and showing the value {{ item.value.ip_address }} and showing type {{item.value.type}} "
+#  with_dict: "{{ checkpoint_parsed_csv.dict }}"
+#  register: checkpoint_network_type_var
