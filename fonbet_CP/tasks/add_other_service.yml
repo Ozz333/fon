@@ -1,4 +1,4 @@
-# Add tcp servic to CP
+# Add other service to CP
 - name: login
   uri:
     url: "https://192.168.1.100/web_api/v1.6/login"
@@ -6,8 +6,8 @@
     method: POST
     body_format: json
     body:
-      user: "admin"
-      password: "vpn123"
+      user: "{{ cp_user }}"
+      password: "{{ cp_password }}"
   register: loginoutput
 
 - set_fact:
@@ -22,13 +22,13 @@
     headers:
       X-chkp-sid: "{{ sid }}"
     body:
-      name: "tcp_service_2"
-      port: 5670
+      name: "{{ item.value.name }}"
+      port: "{{ item.value.service }}"
       keep-connections-open-after-policy-installation: false
       session-timeout: 0
       match-for-any: true
       color: khaki
-      comments: "From Ansible"
+      comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
   register: loginoutput
 
 - name: publish
@@ -41,4 +41,3 @@
       X-chkp-sid: "{{ sid }}"
     body:
       {}
-

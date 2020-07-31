@@ -28,7 +28,7 @@
           name: "{{ item.value.name }}"
           ip-address: "{{ item.value.ip_address }}"
           color: khaki
-          comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"	
+          comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
 
     - name: publish
       uri:
