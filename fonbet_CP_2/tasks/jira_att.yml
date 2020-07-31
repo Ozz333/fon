@@ -15,14 +15,14 @@
 - name: Download file
   get_url:
     url: "{{ issue }}"
-    dest: "{{ role_path }}/files/new_obj.csv"
+    dest: "{{ role_path }}/files/new_rule.csv"
     force_basic_auth: yes
     username: "{{ jira_user }}"
     password: "{{ jira_password }}"
 
 - name: loading CSV and parsing it with nessecary parameters
   read_csv:
-    path: "{{ role_path }}/files/new_obj.csv"
+    path: "{{ role_path }}/files/new_rule.csv"
     delimiter: ';'
     key: name
   register: checkpoint_parsed_csv
