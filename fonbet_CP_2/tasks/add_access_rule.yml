@@ -35,7 +35,8 @@
         - "{{ item.value.destination_name }}"
       service:
         - "{{ item.value.service_name_1 }}"
-#        - "{{ item.value.service_name_2 }}"
+        - "{{ item.value.service_name_2 }}"
+          when: item.value.service_name_2 != ""
 #        - "{{ item.value.service_name_3 }}"
       action: "{{ item.value.action }}"
       comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
