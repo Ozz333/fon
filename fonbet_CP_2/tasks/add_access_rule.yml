@@ -14,31 +14,31 @@
     sid: "{{ loginoutput.json.sid }}"
 
 - name: add_access_rule
-    uri:
-      url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
-      validate_certs: false
-      method: POST
-      body_format: json
-      headers:
-        X-chkp-sid: "{{ sid }}"
-      body:
-        name: "{{ item.value.name }}"
-        layer: Network
-        position:
-          bottom: "From Ansible"
-        track:
-          type: Log
-        time: "{{ item.value.time_name }}"
-        source:
-          - "{{ item.value.source_name }}"
-        destination:
-          - "{{ item.value.destination_name }}"
-        service:
-          - "{{ item.value.service_name_1 }}"
-          - "{{ item.value.service_name_2 }}"
-          - "{{ item.value.service_name_3 }}"
-        action: "{{ item.value.action }}"
-        comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      name: "{{ item.value.name }}"
+      layer: Network
+      position:
+        bottom: "From Ansible"
+      track:
+        type: Log
+      time: "{{ item.value.time_name }}"
+      source:
+        - "{{ item.value.source_name }}"
+      destination:
+        - "{{ item.value.destination_name }}"
+      service:
+        - "{{ item.value.service_name_1 }}"
+        - "{{ item.value.service_name_2 }}"
+        - "{{ item.value.service_name_3 }}"
+      action: "{{ item.value.action }}"
+      comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
 
 - name: publish
   uri:
