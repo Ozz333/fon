@@ -10,3 +10,4 @@
 
 - name:  Importing tasks
   include_tasks: "add_access_rule.yml"
+  with_dict: "{{ checkpoint_parsed_csv.dict }}"
