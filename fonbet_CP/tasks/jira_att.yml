@@ -22,7 +22,7 @@
 
 - name: loading CSV and parsing it with nessecary parameters
   read_csv: 
-    path: "{{ fonbet_CP }}/files/new_obj.csv"
+    path: "{{ role_path }}/files/new_obj.csv"
     delimiter: ';'
     key: name
   register: checkpoint_parsed_csv
