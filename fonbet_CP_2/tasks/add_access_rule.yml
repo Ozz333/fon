@@ -22,22 +22,23 @@
       headers:
         X-chkp-sid: "{{ sid }}"
       body:
-        name: my_rule_4
+        name: "{{ item.value.name }}"
         layer: Network
         position:
           bottom: "From Ansible"
         track:
           type: Log
-        time: my_time
+        time: "{{ item.value.time_name }}"
         source:
-          - Any
+          - "{{ item.value.source_name }}"
         destination:
-          - Any
+          - "{{ item.value.destination_name }}"
         service:
-          - https
-          - http
-        action: Accept
-        comments: "From Ansible"
+          - "{{ item.value.service_name_1 }}"
+          - "{{ item.value.service_name_2 }}"
+          - "{{ item.value.service_name_3 }}"
+        action: "{{ item.value.action }}"
+        comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
 
 - name: publish
   uri:
