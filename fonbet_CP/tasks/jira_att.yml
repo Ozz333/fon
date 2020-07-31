@@ -1,6 +1,6 @@
 - name: get issue
   uri:
-    url: "https://infosec-ib.atlassian.net/rest/api/2/issue/{{ jira_board }}{{ jira_case }}"
+    url: "https://infosec-ib.atlassian.net/rest/api/2/issue/{{ jira_board }}-{{ jira_case }}"
     method: GET
     force_basic_auth: yes
     body_format: json
