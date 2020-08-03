@@ -6,8 +6,7 @@
 #### Importing Jira Parsing file
 
 - name: Importing base Jira parsing tasks
-  include_tasks: jira_att.yml
+  import_tasks: jira_att.yml
 
 - name:  Importing tasks
-  include_tasks: "add_access_rule.yml"
-  with_dict: "{{ checkpoint_parsed_csv.dict }}"
+  import_tasks: "add_access_rule.yml"
