@@ -28,16 +28,16 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ item.value.time_name }}"
+      time: "{{ item.value.time_name | default(omit) }}"
       source:
         - "{{ item.value.source_name }}"
       destination:
         - "{{ item.value.destination_name }}"
       service:
-        - "{{ item.value.service_name_1 }}"
-        - "{{ item.value.service_name_2 }}"
-        when: item.value.service_name_2 | length > 0    
+        - "{{ item.value.service_name_1 | default(omit) }}"
+        - "{{ item.value.service_name_2 | default(omit) }}"
 #        - "{{ item.value.service_name_3 }}"
+#        - "{{ item.value.service_name_4 }}"
       action: "{{ item.value.action }}"
       comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
 
