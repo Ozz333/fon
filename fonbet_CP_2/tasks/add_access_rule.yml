@@ -35,9 +35,9 @@
         - "{{ item.value.destination_name }}"
       service:
         - "{{ item.value.service_name_1 | default(omit) }}"
-        - "{{ item.value.service_name_2 | default(omit) }}"
-        - "{{ item.value.service_name_3 | default(omit) }}"
-        - "{{ item.value.service_name_4 | default(omit) }}"
+    #    - "{{ item.value.service_name_2 | default(omit) }}"
+    #    - "{{ item.value.service_name_3 | default(omit) }}"
+    #    - "{{ item.value.service_name_4 | default(omit) }}"
       action: "{{ item.value.action }}"
       comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
