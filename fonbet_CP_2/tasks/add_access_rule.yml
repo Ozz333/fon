@@ -34,8 +34,8 @@
       destination:
         - "{{ cp_rule.value.destination_name }}"
       service:
-        - "{{ cp_rule.value.service_name_1 | }}"
-        - "{{ cp_rule.value.service_name_2 | }}"
+        - "{{ cp_rule.value.service_name_1 }}"
+        - "{{ cp_rule.value.service_name_2 }}"
 #        - "{{ cp_rule.value.service_name_3 | default('') }}"
 #        - "{{ cp_rule.value.service_name_4 | default('') }}"
       action: "{{ cp_rule.value.action }}"
