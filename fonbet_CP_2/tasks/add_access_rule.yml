@@ -36,8 +36,8 @@
       service:
         - "{{ cp_rule.value.service_name_1 }}"
         - "{{ cp_rule.value.service_name_2 | default(omit) }}"
-        - "{{ cp_rule.value.service_name_3 | default(omit) }}"
-        - "{{ cp_rule.value.service_name_4 | default(omit) }}"
+        - "{{ cp_rule.value.service_name_3 | default() }}"
+        - "{{ cp_rule.value.service_name_4 | default('') }}"
       action: "{{ cp_rule.value.action }}"
       comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
