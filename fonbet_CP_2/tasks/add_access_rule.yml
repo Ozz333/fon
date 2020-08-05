@@ -43,7 +43,12 @@
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
   loop_control:
     loop_var: cp_rule
+  register: loginoutput_2
 
+  - name: debug_for_error
+    debug:
+      msg: "{{ loginoutput_2 }}"
+    when: result is failed
 
 - name: publish
   uri:
