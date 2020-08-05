@@ -49,7 +49,6 @@
 - name: debug_for_error
   debug:
     msg: "{{ loginoutput_2 }}"
-  when: result is failed
 
 - name: publish
   uri:
