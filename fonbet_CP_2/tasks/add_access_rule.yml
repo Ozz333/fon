@@ -54,8 +54,8 @@
     missing_obj: "{{ loginoutput_2.results[0].json.message | regex_findall('\\b\\[\\w*\\]\\b') }}"
 
 - name: debug_for_error_2
-    debug:
-      msg: "{{ missing_obj }}"
+  debug:
+    msg: "{{ missing_obj }}"
 
 - name: publish
   uri:
