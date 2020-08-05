@@ -43,8 +43,8 @@
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
   loop_control:
     loop_var: cp_rule
-  ignore_errors: yes
   register: loginoutput_2
+  ignore_errors: yes
 
 - name: debug_for_error
   debug:
