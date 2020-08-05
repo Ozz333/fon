@@ -51,7 +51,7 @@
     msg: "{{ loginoutput_2.results[0].json.message }}"
 
 - set_fact:
-    missing_obj: "{{ loginoutput_2.results[0].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
+    missing_obj: "{{ loginoutput_2.results[0].json.message | regex_search('\\b(\\w+)\\b') }}"
 
 - name: debug_for_error_2
   debug:
