@@ -48,7 +48,7 @@
 
 - name: debug_for_error
   debug:
-    msg: "{{ loginoutput_2.results[0].content.message }}"
+    msg: "{{ loginoutput_2.results[0].content['message'] }}"
 
 - name: publish
   uri:
