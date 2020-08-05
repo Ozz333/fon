@@ -28,16 +28,16 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name | default(omit) }}"
+      time: "{{ cp_rule.value.time_name }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
         - "{{ cp_rule.value.destination_name }}"
       service:
         - "{{ cp_rule.value.service_name_1 }}"
-        - "{{ cp_rule.value.service_name_2 is defined }}"
-        - "{{ cp_rule.value.service_name_3 is defined }}"
-        - "{{ cp_rule.value.service_name_4 is defined }}"
+        - "{{ cp_rule.value.service_name_2 }}"
+        - "{{ cp_rule.value.service_name_3 }}"
+        - "{{ cp_rule.value.service_name_4 }}"
       action: "{{ cp_rule.value.action }}"
       comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
