@@ -46,8 +46,7 @@
   register: loginoutput_2
   ignore_errors: yes
 
-- name: debug_for_error
-  debug:
+- set_fact:
     msg: "{{ loginoutput_2.results[0].json.message }}"
 
 - set_fact:
