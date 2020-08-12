@@ -45,7 +45,11 @@
     loop_var: cp_rule
   register: loginoutput_2
   ignore_errors: yes
-  when: cp_rule.value.service_name_1 =! '' AND  cp_rule.value.service_name_2 =! '' AND cp_rule.value.service_name_3 =! '' AND cp_rule.value.service_name_4 =! ''
+  when: 
+    -  cp_rule.value.service_name_1 =! ""
+    -  cp_rule.value.service_name_2 =! ""
+    -  cp_rule.value.service_name_3 =! ""
+    -  cp_rule.value.service_name_4 =! ""
 
 - name: add_access_rule
   uri:
@@ -78,7 +82,11 @@
     loop_var: cp_rule
   register: loginoutput_2
   ignore_errors: yes
-  when:  cp_rule.value.service_name_1 =! '' AND  cp_rule.value.service_name_2 =! '' AND cp_rule.value.service_name_3 =! '' AND cp_rule.value.service_name_4 == ''
+  when: 
+    - cp_rule.value.service_name_1 =! ""
+    - cp_rule.value.service_name_2 =! ""
+    - cp_rule.value.service_name_3 =! ""
+    - cp_rule.value.service_name_4 == ""
 
 - name: add_access_rule
   uri:
@@ -110,7 +118,11 @@
     loop_var: cp_rule
   register: loginoutput_2
   ignore_errors: yes
-  when:  cp_rule.value.service_name_1 =! '' AND  cp_rule.value.service_name_2 =! '' AND cp_rule.value.service_name_3 == '' AND cp_rule.value.service_name_4 == ''
+  when: 
+    - cp_rule.value.service_name_1 =! ""
+    - cp_rule.value.service_name_2 =! ""
+    - cp_rule.value.service_name_3 == ""
+    - cp_rule.value.service_name_4 == ""
 
 - name: add_access_rule_2
   uri:
@@ -141,7 +153,11 @@
     loop_var: cp_rule
   register: loginoutput_2
   ignore_errors: yes
-  when:  cp_rule.value.service_name_1 =! '' AND  cp_rule.value.service_name_2 == '' AND cp_rule.value.service_name_3 == '' AND cp_rule.value.service_name_4 == ''
+  when: 
+    - cp_rule.value.service_name_1 =! ""
+    - cp_rule.value.service_name_2 == ""
+    - cp_rule.value.service_name_3 == ""
+    - cp_rule.value.service_name_4 == ""
 
 
 - set_fact:
