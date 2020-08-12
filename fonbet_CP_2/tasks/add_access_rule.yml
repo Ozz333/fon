@@ -45,6 +45,120 @@
     loop_var: cp_rule
   register: loginoutput_2
   ignore_errors: yes
+  when: 
+    - ( cp_rule.value.service_name_1 =! "")  AND 
+    - ( cp_rule.value.service_name_2 =! "")  AND 
+    - ( cp_rule.value.service_name_3 =! "")  AND 
+    - ( cp_rule.value.service_name_4 =! "")
+
+- name: add_access_rule
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      name: "{{ cp_rule.value.name }}"
+      layer: Network
+      position:
+        bottom: "From Ansible"
+      track:
+        type: Log
+      time: "{{ cp_rule.value.time_name }}"
+      source:
+        - "{{ cp_rule.value.source_name }}"
+      destination:
+        - "{{ cp_rule.value.destination_name }}"
+      service:
+        - "{{ cp_rule.value.service_name_1 }}"
+        - "{{ cp_rule.value.service_name_2 }}"
+        - "{{ cp_rule.value.service_name_3 }}"
+      action: "{{ cp_rule.value.action }}"
+      comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
+  with_dict: "{{ checkpoint_parsed_csv.dict }}"
+  loop_control:
+    loop_var: cp_rule
+  register: loginoutput_2
+  ignore_errors: yes
+  when: 
+    - ( cp_rule.value.service_name_1 =! "")  AND 
+    - ( cp_rule.value.service_name_2 =! "")  AND 
+    - ( cp_rule.value.service_name_3 =! "")  AND 
+    - ( cp_rule.value.service_name_4 == "")
+
+- name: add_access_rule
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      name: "{{ cp_rule.value.name }}"
+      layer: Network
+      position:
+        bottom: "From Ansible"
+      track:
+        type: Log
+      time: "{{ cp_rule.value.time_name }}"
+      source:
+        - "{{ cp_rule.value.source_name }}"
+      destination:
+        - "{{ cp_rule.value.destination_name }}"
+      service:
+        - "{{ cp_rule.value.service_name_1 }}"
+        - "{{ cp_rule.value.service_name_2 }}"
+      action: "{{ cp_rule.value.action }}"
+      comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
+  with_dict: "{{ checkpoint_parsed_csv.dict }}"
+  loop_control:
+    loop_var: cp_rule
+  register: loginoutput_2
+  ignore_errors: yes
+  when: 
+    - ( cp_rule.value.service_name_1 =! "")  AND 
+    - ( cp_rule.value.service_name_2 =! "")  AND 
+    - ( cp_rule.value.service_name_3 == "")  AND
+    - ( cp_rule.value.service_name_4 == "")
+
+- name: add_access_rule
+  uri:
+    url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
+    validate_certs: false
+    method: POST
+    body_format: json
+    headers:
+      X-chkp-sid: "{{ sid }}"
+    body:
+      name: "{{ cp_rule.value.name }}"
+      layer: Network
+      position:
+        bottom: "From Ansible"
+      track:
+        type: Log
+      time: "{{ cp_rule.value.time_name }}"
+      source:
+        - "{{ cp_rule.value.source_name }}"
+      destination:
+        - "{{ cp_rule.value.destination_name }}"
+      service:
+        - "{{ cp_rule.value.service_name_1 }}"
+      action: "{{ cp_rule.value.action }}"
+      comments: "Geneted by Ansible from the board {{ jira_board }} and case ID {{ jira_case }}"
+  with_dict: "{{ checkpoint_parsed_csv.dict }}"
+  loop_control:
+    loop_var: cp_rule
+  register: loginoutput_2
+  ignore_errors: yes
+  when: 
+    - ( cp_rule.value.service_name_1 =! "")  AND 
+    - ( cp_rule.value.service_name_2 == "")  AND 
+    - ( cp_rule.value.service_name_3 == "")  AND
+    - ( cp_rule.value.service_name_4 == "")
+
 
 - set_fact:
     msg: "{{ loginoutput_2.results[0].json.message }}"
