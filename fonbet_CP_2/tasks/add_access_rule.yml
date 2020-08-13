@@ -13,7 +13,7 @@
 - set_fact:
     sid: "{{ loginoutput.json.sid }}"
 
-- name: Adding Access Role Condition 1
+- name: Adding Access Rule Condition 1
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -28,7 +28,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name }}"
+      time: "{{ cp_rule.value.time_name | default(omit) }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
@@ -51,7 +51,7 @@
     -  cp_rule.value.service_name_3 | length > 0
     -  cp_rule.value.service_name_4 | length > 0
 
-- name: Adding Access Role Condition 2
+- name: Adding Access Rule Condition 2
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -66,11 +66,11 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name }}"
+      time: "{{ cp_rule.value.time_name |default(omit) }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
-        - "{{ cp_rule.value.destination_name }}"
+        - "{{ cp_rule.value.destination_name}}"
       service:
         - "{{ cp_rule.value.service_name_1 }}"
         - "{{ cp_rule.value.service_name_2 }}"
@@ -88,7 +88,7 @@
     - cp_rule.value.service_name_3 | length > 0
     - cp_rule.value.service_name_4 | length == 0
 
-- name: Adding Access Role Condition 3
+- name: Adding Access Rule Condition 3
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -103,7 +103,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name }}"
+      time: "{{ cp_rule.value.time_name | default(omit)  }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
@@ -124,7 +124,7 @@
     - cp_rule.value.service_name_3 | length  == 0
     - cp_rule.value.service_name_4 | length  == 0
 
-- name: Adding Access Role Condition 4
+- name: Adding Access Rule Condition 4
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -139,7 +139,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name }}"
+      time: "{{ cp_rule.value.time_name | default(omit) }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
