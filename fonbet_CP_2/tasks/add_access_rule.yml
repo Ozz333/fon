@@ -174,14 +174,14 @@
     - cp_rule.value.service_name_3 | length == 0
     - cp_rule.value.service_name_4 | length == 0
 
-#- name: Failing when condition not met for Rule 1
-#  debug:
-#    var: add_rule_condition_4
+- name: Failing when condition not met for Rule 1
+  debug:
+    var: add_rule_condition_4.results.json
 
-- name: Failing when condition not met for Rule 4
-  fail:
-    msg:  "Unable to find the Object"
-  when: "'not found' in add_rule_condition_4.results[0].json.message"
+#- name: Failing when condition not met for Rule 4
+#  fail:
+#    msg:  "Unable to find the Object"
+#  when: "'not found' in add_rule_condition_4.results[0].json.message"
 
 #- set_fact:
 #    msg: "{{ loginoutput_2.results[0].json.message }}"
