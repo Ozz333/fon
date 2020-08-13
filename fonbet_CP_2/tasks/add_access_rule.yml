@@ -96,7 +96,7 @@
 - name: Failing when condition not met for Rule 2
   fail:
     msg:  "Unable to find the Object"
-  when: "'not found' in add_rule_condition_2[0].results.json.message"
+  when: "'not found' in add_rule_condition_2.results[0].json.message"
 
 - name: Adding Access Rule Condition 3
   uri:
@@ -137,7 +137,7 @@
 - name: Failing when condition not met for Rule 3
   fail:
     msg:  "Unable to find the Object"
-  when: "'not found' in add_rule_condition_3[0].results.json.message"
+  when: "'not found' in add_rule_condition_3.results[0].json.message"
 
 - name: Adding Access Rule Condition 4
   uri:
@@ -181,7 +181,7 @@
 - name: Failing when condition not met for Rule 4
   fail:
     msg:  "Unable to find the Object"
-  when: "'not found' in add_rule_condition_4[0].results.json.message"
+  when: "'not found' in add_rule_condition_4.results[0].json.message"
 
 #- set_fact:
 #    msg: "{{ loginoutput_2.results[0].json.message }}"
