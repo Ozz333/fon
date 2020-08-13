@@ -43,13 +43,18 @@
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
   loop_control:
     loop_var: cp_rule
-  register: loginoutput_2
+  register: add_rule_condition_1
   ignore_errors: yes
   when: 
     -  cp_rule.value.service_name_1 | length > 0
     -  cp_rule.value.service_name_2 | length > 0
     -  cp_rule.value.service_name_3 | length > 0
     -  cp_rule.value.service_name_4 | length > 0
+
+- name: Failing when condition not met for Rule 1
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add.rule_condition_1.json.msg"
 
 - name: Adding Access Rule Condition 2
   uri:
@@ -80,13 +85,18 @@
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
   loop_control:
     loop_var: cp_rule
-  register: loginoutput_2
+  register: add_rule_condition_2
   ignore_errors: yes
   when: 
     - cp_rule.value.service_name_1 | length > 0
     - cp_rule.value.service_name_2 | length > 0
     - cp_rule.value.service_name_3 | length > 0
     - cp_rule.value.service_name_4 | length == 0
+
+- name: Failing when condition not met for Rule 2
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add.rule_condition_2.json.msg"
 
 - name: Adding Access Rule Condition 3
   uri:
@@ -116,13 +126,18 @@
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
   loop_control:
     loop_var: cp_rule
-  register: loginoutput_2
+  register: add_rule_condition_3
   ignore_errors: yes
   when: 
     - cp_rule.value.service_name_1 | length > 0
     - cp_rule.value.service_name_2 | length > 0
     - cp_rule.value.service_name_3 | length  == 0
     - cp_rule.value.service_name_4 | length  == 0
+
+- name: Failing when condition not met for Rule 3
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add.rule_condition_3.json.msg"
 
 - name: Adding Access Rule Condition 4
   uri:
@@ -151,7 +166,7 @@
   with_dict: "{{ checkpoint_parsed_csv.dict }}"
   loop_control:
     loop_var: cp_rule
-  register: loginoutput_2
+  register: add_rule_condition_4
   ignore_errors: yes
   when: 
     - cp_rule.value.service_name_1 | length > 0
@@ -159,6 +174,10 @@
     - cp_rule.value.service_name_3 | length == 0
     - cp_rule.value.service_name_4 | length == 0
 
+- name: Failing when condition not met for Rule 4
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add.rule_condition_4.json.msg"
 
 #- set_fact:
 #    msg: "{{ loginoutput_2.results[0].json.message }}"
