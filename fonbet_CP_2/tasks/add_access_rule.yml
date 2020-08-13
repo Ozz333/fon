@@ -174,7 +174,7 @@
     - cp_rule.value.service_name_3 | length == 0
     - cp_rule.value.service_name_4 | length == 0
 
-- name: Failing when condition not met for Rule 1
+- name: ECHOING
   debug:
     var: add_rule_condition_4.results.json
 
