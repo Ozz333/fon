@@ -51,6 +51,11 @@
     -  cp_rule.value.service_name_3 | length > 0
     -  cp_rule.value.service_name_4 | length > 0
 
+- name: Failing when condition not met for Rule 1
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add_rule_condition_1.results.json.message"
+
 - name: Adding Access Rule Condition 2
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
@@ -88,6 +93,11 @@
     - cp_rule.value.service_name_3 | length > 0
     - cp_rule.value.service_name_4 | length == 0
 
+- name: Failing when condition not met for Rule 2
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add_rule_condition_2.results.json.message"
+
 - name: Adding Access Rule Condition 3
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
@@ -124,6 +134,11 @@
     - cp_rule.value.service_name_3 | length  == 0
     - cp_rule.value.service_name_4 | length  == 0
 
+- name: Failing when condition not met for Rule 3
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add_rule_condition_3.results.json.message"
+
 - name: Adding Access Rule Condition 4
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
@@ -159,14 +174,14 @@
     - cp_rule.value.service_name_3 | length == 0
     - cp_rule.value.service_name_4 | length == 0
 
-- name: Failing when condition not met for Rule 1
-  debug:
-    var: add_rule_condition_4
+#- name: Failing when condition not met for Rule 1
+#  debug:
+#    var: add_rule_condition_4
 
-#- name: Failing when condition not met for Rule 4
-#  fail:
-#    msg:  "Unable to find the Object"
-#  when: "'not found' in add_rule_condition_4.json.msg"
+- name: Failing when condition not met for Rule 4
+  fail:
+    msg:  "Unable to find the Object"
+  when: "'not found' in add_rule_condition_4.results.json.message"
 
 #- set_fact:
 #    msg: "{{ loginoutput_2.results[0].json.message }}"
