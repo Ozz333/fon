@@ -160,15 +160,15 @@
     - cp_rule.value.service_name_4 | length == 0
 
 
-- set_fact:
-    msg: "{{ loginoutput_2.results[0].json.message }}"
+#- set_fact:
+#    msg: "{{ loginoutput_2.results[0].json.message }}"
 
-- set_fact:
-    missing_obj: "{{ loginoutput_2.results[0].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
+#- set_fact:
+#    missing_obj: "{{ loginoutput_2.results[0].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
 
-- name: debug_for_error
-  debug:
-    msg: "{{ missing_obj }}"
+#- name: debug_for_error
+#  debug:
+#    msg: "{{ missing_obj }}"
 
 - name: publish
   uri:
