@@ -52,6 +52,10 @@
     -  cp_rule.value.service_name_4 | length > 0
 
 - name: Failing when condition not met for Rule 1
+  debug:
+    var: add_rule_condition_1
+
+- name: Failing when condition not met for Rule 1
   fail:
     msg:  "Unable to find the Object"
   when: "'not found' in add_rule_condition_1.json.msg"
