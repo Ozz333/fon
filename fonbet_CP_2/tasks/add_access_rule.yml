@@ -13,7 +13,7 @@
 - set_fact:
     sid: "{{ loginoutput.json.sid }}"
 
-- name: add_access_rule
+- name: Adding Access Role Condition 1
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -51,7 +51,7 @@
     -  cp_rule.value.service_name_3 | length > 0
     -  cp_rule.value.service_name_4 | length > 0
 
-- name: add_access_rule
+- name: Adding Access Role Condition 2
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -88,7 +88,7 @@
     - cp_rule.value.service_name_3 | length > 0
     - cp_rule.value.service_name_4 | length == 0
 
-- name: add_access_rule
+- name: Adding Access Role Condition 3
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
@@ -124,7 +124,7 @@
     - cp_rule.value.service_name_3 | length  == 0
     - cp_rule.value.service_name_4 | length  == 0
 
-- name: add_access_rule_2
+- name: Adding Access Role Condition 4
   uri:
     url: "https://192.168.1.100/web_api/v1.6/add-access-rule"
     validate_certs: false
