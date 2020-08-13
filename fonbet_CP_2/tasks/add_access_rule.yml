@@ -53,7 +53,7 @@
 
 - name: ECHOING 1
   debug:
-    var: add_rule_condition_1.results.json
+    var: add_rule_condition_1.results[0].json.message
 
 #- name: Failing when condition not met for Rule 1
 #  fail:
