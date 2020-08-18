@@ -167,7 +167,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{% if cp_rule.value.time_name == '' %}Never{% else %}{{ cp_rule.value.time_name }}{% endif %} "
+      time: 'Never'
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
