@@ -192,7 +192,7 @@
     var: add_rule_condition_4.results[1].json.message
 
 - name: Failing when condition not met for Rule 4
-  fail:
+  debug:
     msg:  "Unable to find the Object"
   when: "'not found' in add_rule_condition_4.results[1].json.message"
 
