@@ -28,7 +28,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name | default(omit) }}"
+      time: "{{ cp_rule.value.time_name | default('Never') }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
@@ -75,7 +75,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name |default(omit) }}"
+      time: "{{ cp_rule.value.time_name |default('Never')}}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
@@ -122,7 +122,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name | default(omit)  }}"
+      time: "{{ cp_rule.value.time_name | default('Never')  }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
@@ -167,7 +167,7 @@
         bottom: "From Ansible"
       track:
         type: Log
-      time: "{{ cp_rule.value.time_name | default(omit) }}"
+      time: "{{ cp_rule.value.time_name | default('Never') }}"
       source:
         - "{{ cp_rule.value.source_name }}"
       destination:
