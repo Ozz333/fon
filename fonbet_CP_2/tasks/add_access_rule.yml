@@ -196,15 +196,15 @@
     msg:  "Unable to find the Object"
   when: "'not found' in add_rule_condition_4.results[1].json.message"
 
-#- set_fact:
-#    msg: "{{ loginoutput_2.results[0].json.message }}"
+- set_fact:
+    msg: "{{ add_rule_condition_4.results[1].json.message }}"
 
-#- set_fact:
-#    missing_obj: "{{ loginoutput_2.results[0].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
+- set_fact:
+    missing_obj: "{{ add_rule_condition_4.results[1].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
 
-#- name: debug_for_error
-#  debug:
-#    msg: "{{ missing_obj }}"
+- name: debug_for_error
+  debug:
+    msg: "{{ missing_obj }}"
 
 - name: publish
   uri:
