@@ -189,7 +189,7 @@
 
 - name: ECHOING 4
   debug:
-    var: add_rule_condition_4.results[0].json.message
+    var: add_rule_condition_4
 
 #- name: Failing when condition not met for Rule 4
 #  fail:
