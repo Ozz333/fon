@@ -193,7 +193,7 @@
 
 - name: Failing when condition not met for Rule 4
   debug:
-    msg:  "Unable to find the Object"
+    msg:  "Unable to find the Object RULE"
   when: "'not found' in add_rule_condition_4.results[1].json.message"
 
 - set_fact:
