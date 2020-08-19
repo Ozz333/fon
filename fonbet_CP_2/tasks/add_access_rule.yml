@@ -196,15 +196,35 @@
 #    msg:  "Unable to find the Object RULE"
 #  when: "'not found' in add_rule_condition_4.results[1].json.message"
 
-- set_fact:
+- name: Echoing the result of working Playbook with error
+  fail: 
     msg: "{{ add_rule_condition_4.results[1].json.message }}"
+  when: not found' in add_rule_condition_4.results[1].json.message"
 
-- set_fact:
-    missing_obj: "{{ add_rule_condition_4.results[1].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
+- name: Echoing the result of working Playbook with error
+  fail: 
+    msg: "{{ add_rule_condition_3.results[1].json.message }}"
+  when: not found' in add_rule_condition_3.results[1].json.message"
 
-- name: debug_for_error
-  debug:
-    msg: "{{ missing_obj }}"
+- name: Echoing the result of working Playbook with error
+  fail: 
+    msg: "{{ add_rule_condition_2.results[1].json.message }}"
+  when: not found' in add_rule_condition_2.results[1].json.message"
+
+- name: Echoing the result of working Playbook with error
+  fail: 
+    msg: "{{ add_rule_condition_1.results[1].json.message }}"
+  when: not found' in add_rule_condition_1.results[1].json.message"
+
+
+#- set_fact:
+#    missing_obj: "{{ add_rule_condition_4.results[1].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
+
+#- name: debug_for_error
+#  debug:
+#    msg: "{{ missing_obj }}"
+#
+
 
 - name: publish
   uri:
