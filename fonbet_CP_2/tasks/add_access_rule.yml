@@ -197,22 +197,22 @@
 #  when: "'not found' in add_rule_condition_4.results[1].json.message"
 
 - name: Echoing the result of working Playbook with error
-  fail: 
+  debug: 
     msg: "{{ add_rule_condition_4.results[1].json.message }}"
   when: "'not found' in add_rule_condition_4.results[1].json.message"
 
 - name: Echoing the result of working Playbook with error
-  fail: 
+  debug: 
     msg: "{{ add_rule_condition_3.results[1].json.message }}"
   when: "'not found' in add_rule_condition_3.results[1].json.message"
 
 - name: Echoing the result of working Playbook with error
-  fail: 
+  debug: 
     msg: "{{ add_rule_condition_2.results[1].json.message }}"
   when: "'not found' in add_rule_condition_2.results[1].json.message"
 
 - name: Echoing the result of working Playbook with error
-  fail: 
+  debug: 
     msg: "{{ add_rule_condition_1.results[1].json.message }}"
   when: "'not found' in add_rule_condition_1.results[1].json.message"
 
