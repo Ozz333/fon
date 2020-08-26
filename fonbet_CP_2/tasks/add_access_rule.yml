@@ -196,26 +196,15 @@
 #    msg:  "Unable to find the Object RULE"
 #  when: "'not found' in add_rule_condition_4.results[1].json.message"
 
-- name: Echoing the result of working Playbook with error
-  debug: 
-    msg: "{{ add_rule_condition_4.results[1].json.message }}"
-  when: "'not found' in add_rule_condition_4.results[1].json.message"
 
-- name: Echoing the result of working Playbook with error
-  debug: 
-    msg: "{{ add_rule_condition_3.results[1].json.message }}"
-  when: "'not found' in add_rule_condition_3.results[1].json.message"
-
-- name: Echoing the result of working Playbook with error
-  debug: 
-    msg: "{{ add_rule_condition_2.results[1].json.message }}"
-  when: "'not found' in add_rule_condition_2.results[1].json.message"
-
-- name: Echoing the result of working Playbook with error
-  debug: 
-    msg: "{{ add_rule_condition_1.results[1].json.message }}"
-  when: "'not found' in add_rule_condition_1.results[1].json.message"
-
+- name: Failing when at least one rule fails. 
+  fail: 
+    msg: "Error during adding the rule. Object not found
+  when: 
+    - "'not found' in add_rule_condition_4.results[1].json.message or"
+    - "'not found' in add_rule_condition_3.results[1].json.message or"
+    - "'not found' in add_rule_condition_2.results[1].json.message or"
+    - "'not found' in add_rule_condition_1.results[1].json.message or"
 
 #- set_fact:
 #    missing_obj: "{{ add_rule_condition_4.results[1].json.message | regex_search('\\b\\[(\\w+)\\]\\b') }}"
