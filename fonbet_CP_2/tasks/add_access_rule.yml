@@ -199,7 +199,7 @@
 
 - name: Failing when at least one rule fails. 
   fail: 
-    msg: "Error during adding the rule. Object not found
+    msg: "Error during adding the rule. Object not found"
   when: 
     - "'not found' in add_rule_condition_4.results[1].json.message or"
     - "'not found' in add_rule_condition_3.results[1].json.message or"
